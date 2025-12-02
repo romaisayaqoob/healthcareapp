@@ -1,38 +1,49 @@
 package com.example.healthcare;
 
-public class Doctor {
-    private String id;
-    private String name;
+public class Doctor extends User {
+
     private String specialization;
     private String hospital;
-    private int experience;
-    private int patients;
-    private double rating;
+    private String experience;       // e.g., "5 years"
+    private String qualification;    // e.g., "MBBS, MD"
+  /*  private int patients;            // optional
+    private double rating;           // optional*/
 
-    public Doctor() {}
-    public Doctor(String id, String name, String specialization, String hospital, int experience, int patients, double rating) {
-        this.id = id;
-        this.name = name;
+    public Doctor() {
+        // Required empty constructor for Firebase
+    }
+
+    public Doctor(
+            String uid,
+            String name,
+            String email,
+            String specialization,
+            String hospital,
+            String experience,
+            String qualification
+    ) {
+        super(uid, name, email, "Doctor"); // role is always Doctor
         this.specialization = specialization;
         this.hospital = hospital;
         this.experience = experience;
-        this.patients = patients;
-        this.rating = rating;
+        this.qualification = qualification;
+       /* this.patients = 0;
+        this.rating = 0.0;*/
     }
-    public String getId() { return id; }
-    public String getName() { return name; }
+
+    // Getters
     public String getSpecialization() { return specialization; }
     public String getHospital() { return hospital; }
-    public int getExperience() { return experience; }
-    public int getPatients() { return patients; }
-    public double getRating() { return rating; }
+    public String getExperience() { return experience; }
+    public String getQualification() { return qualification; }
+    /*public int getPatients() { return patients; }
+    public double getRating() { return rating; }*/
 
     // Setters
-    public void setId(String id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
     public void setSpecialization(String specialization) { this.specialization = specialization; }
     public void setHospital(String hospital) { this.hospital = hospital; }
-    public void setExperience(int experience) { this.experience = experience; }
-    public void setPatients(int patients) { this.patients = patients; }
-    public void setRating(double rating) { this.rating = rating; }
+    public void setExperience(String experience) { this.experience = experience; }
+    public void setQualification(String qualification) { this.qualification = qualification; }
+/*    public void setPatients(int patients) { this.patients = patients; }
+    public void setRating(double rating) { this.rating = rating; }*/
 }

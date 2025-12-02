@@ -2,15 +2,14 @@ package com.example.healthcare;
 
 
 public class Appointment {
+    private String id;
     String doctorName, specialty, hospital, date, time, status;
     String doctorId; // or String if your doctor IDs are strings
-
+    String patientId; // <-- add this
     public Appointment() {}
-    public Appointment(String doctorId, String date, String time, String status) {
+    public Appointment(String doctorId, String patientId, String date, String time, String status) {
         this.doctorId = doctorId;
-        /*this.doctorName = doctorName;
-        this.specialty = specialty;
-        this.hospital = hospital;*/
+        this.patientId = patientId; // <-- important
         this.date = date;
         this.time = time;
         this.status = status;
@@ -20,6 +19,11 @@ public class Appointment {
     }
 
 
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getPatientId() { return patientId; }
+    public void setPatientId(String patientId) { this.patientId = patientId; }
     public String getDoctorId() { return doctorId; }
     public void setDoctorId(String doctorId) { this.doctorId = doctorId; }
 

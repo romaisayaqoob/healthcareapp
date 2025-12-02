@@ -42,7 +42,7 @@
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/imgBell"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -50,7 +50,7 @@
                 android:layout_centerVertical="true"
                 android:padding="8dp"
                 android:background="@drawable/rounded_background"
-                android:src="@drawable/baseline_local_hospital_24" />
+                android:src="@drawable/bell_solid_full" />-->
         </RelativeLayout>
 
         <!-- WHITE CARD WITH FEATURE GRID -->
@@ -78,110 +78,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
-                        android:tint="#9E9E9E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textSize="11sp"
-                        android:textColor="#666666"
-                        android:text="Emergency" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
-                        android:tint="#9E9E9E" />
-
-                    <TextView
-                        android:text="Hospital"
-                        android:textSize="11sp"
-                        android:textColor="#666666"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
-                        android:tint="#9E9E9E" />
-
-                    <TextView
-                        android:text="Blood"
-                        android:textSize="11sp"
-                        android:textColor="#666666"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
-                        android:tint="#9E9E9E" />
-
-                    <TextView
-                        android:text="Prescription"
-                        android:textSize="11sp"
-                        android:textColor="#666666"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- ROW 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:orientation="vertical"
-                    android:background="@drawable/feature_selected_background"
+                    android:background="@drawable/item_background"
                     android:padding="12dp">
 
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
+                        android:src="@drawable/doctor_svgrepo_com"
                         app:tint="#5B7FED" />
 
                     <TextView
@@ -195,6 +99,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tileEmergency"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -204,11 +109,34 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
+                        android:src="@drawable/emergency_health_healthcare_hospital_kit_medical_svgrepo_com"
                         android:tint="#9E9E9E" />
 
                     <TextView
-                        android:text="Check Up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="11sp"
+                        android:textColor="#666666"
+                        android:text="Emergency" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tileHospital"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/hospital_svgrepo_com"
+                        android:tint="#9E9E9E" />
+
+                    <TextView
+                        android:text="Hospital"
                         android:textSize="11sp"
                         android:textColor="#666666"
                         android:layout_width="wrap_content"
@@ -217,6 +145,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tilePharmacy"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -226,11 +155,11 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
+                        android:src="@drawable/pharmacy_svgrepo_com"
                         android:tint="#9E9E9E" />
 
                     <TextView
-                        android:text="Location"
+                        android:text="Pharmacy"
                         android:textSize="11sp"
                         android:textColor="#666666"
                         android:layout_width="wrap_content"
@@ -238,28 +167,8 @@
                         android:layout_marginTop="8dp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/baseline_local_hospital_24"
-                        android:tint="#9E9E9E" />
-
-                    <TextView
-                        android:text="Radiology"
-                        android:textSize="11sp"
-                        android:textColor="#666666"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
-                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
 
         <!-- SEARCH BAR -->
@@ -277,7 +186,7 @@
             android:textSize="14sp"
             android:textColorHint="#BDBDBD" />
 
-        <!-- SCHEDULE TODAY SECTION -->
+       <!-- &lt;!&ndash; SCHEDULE TODAY SECTION &ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -305,7 +214,7 @@
                 android:textColor="#5B7FED" />
         </LinearLayout>
 
-        <!-- TODAY'S APPOINTMENT CARD -->
+        &lt;!&ndash; TODAY'S APPOINTMENT CARD &ndash;&gt;
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -364,7 +273,7 @@
                 android:textSize="11sp"
                 android:textColor="#757575"
                 android:gravity="end" />
-        </LinearLayout>
+        </LinearLayout>-->
 
         <!-- DOCTOR'S RECOMMENDATION SECTION -->
         <LinearLayout
@@ -380,20 +289,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Doctor's recommendation"
+                android:text="Our Doctors"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#000000" />
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="See more"
                 android:textSize="13sp"
-                android:textColor="#5B7FED" />
+                android:textColor="#5B7FED" />-->
         </LinearLayout>
 
-        <!-- HORIZONTAL SCROLLING DOCTOR CARDS -->
+         <!--HORIZONTAL SCROLLING DOCTOR CARDS
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -407,7 +316,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!-- Doctor Card 1 -->
+                &lt;!&ndash; Doctor Card 1 &ndash;&gt;
                 <LinearLayout
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
@@ -443,7 +352,7 @@
                         android:layout_marginTop="2dp" />
                 </LinearLayout>
 
-                <!-- Doctor Card 2 -->
+                &lt;!&ndash; Doctor Card 2 &ndash;&gt;
                 <LinearLayout
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
@@ -479,7 +388,7 @@
                         android:layout_marginTop="2dp" />
                 </LinearLayout>
 
-                <!-- Doctor Card 3 -->
+                &lt;!&ndash; Doctor Card 3 &ndash;&gt;
                 <LinearLayout
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
@@ -516,14 +425,17 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </HorizontalScrollView>
+        </HorizontalScrollView>-->
 
         <!-- ORIGINAL RECYCLERVIEW (Hidden but still accessible for your Java code) -->
+        <!-- HORIZONTAL RECYCLERVIEW FOR DOCTORS -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_doctors"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical" />
 
     </LinearLayout>
 

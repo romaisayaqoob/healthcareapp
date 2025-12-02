@@ -1,13 +1,11 @@
 plugins {
     id("com.android.application")
-    // This plugin applies the google-services build script configuration
-    // The Groovy syntax id("com.google.gms.google-services") is correct in KTS
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services")   // ✅ Required for Firebase
 }
 
 android {
     namespace = "com.example.healthcare"
-    compileSdk = 36 // Correct KTS syntax
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.healthcare"
@@ -20,7 +18,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false // Correct KTS property assignment
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -29,21 +27,13 @@ android {
     }
 
     compileOptions {
-        // Correct KTS property assignment
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    // You might also need a kotlinOptions block if you are using Kotlin
-    /*
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-    */
 }
 
 dependencies {
-    // Existing dependencies are correct KTS syntax (assuming you use a version catalog - libs.versions.toml)
+    // your existing dependencies
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -54,9 +44,16 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // Firebase dependencies are correct KTS syntax
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
+    // ✅ ADD THESE ↓↓↓↓
+
+    // Firebase BOM (manages versions for you)
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+
+  /*  // Firebase Authentication
+    implementation("com.google.firebase:firebase-auth")
+
+    // Firebase Realtime Database
+    implementation("com.google.firebase:firebase-database")*/
+    implementation("com.google.firebase:firebase-database-ktx:20.3.2") // Realtime DB
+    implementation("com.google.firebase:firebase-auth-ktx:22.2.0")     // Firebase Auth
 }

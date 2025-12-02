@@ -1,14 +1,25 @@
 package com.example.healthcare;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,67 +28,112 @@ import java.util.Locale;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private RecyclerView rv;
+    private RecyclerView recyclerView;
     private EditText etMessage;
     private Button btnSend;
-    private DBHelper dbHelper;
-    private String patientEmail, doctorName;
     private MessageAdapter adapter;
+    private DBHelper dbHelper;
+
+    private String patientId = "PATIENT_ID"; // get from SharedPreferences/session
+    private String doctorId;
+    private String chatId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_chat); // your chat XML
+        SharedPreferences sp = getSharedPreferences("user_session", Context.MODE_PRIVATE);
+        patientId = sp.getString("user_uid", null);
 
-        doctorName = getIntent().getStringExtra("doctor_name");
-        SharedPreferences sp = getSharedPreferences("user_session", MODE_PRIVATE);
-        patientEmail = sp.getString("user_email", null);
+        doctorId = getIntent().getStringExtra("doctor_uid");
+        chatId = patientId + "_" + doctorId;
 
-        dbHelper = new DBHelper();
-
-        rv = findViewById(R.id.recyclerMessages);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
+        recyclerView = findViewById(R.id.recyclerMessages);
         etMessage = findViewById(R.id.etMessage);
         btnSend = findViewById(R.id.btnSend);
 
-        // Initialize adapter with empty list
-        adapter = new MessageAdapter(patientEmail);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MessageAdapter(patientId);
+        recyclerView.setAdapter(adapter);
 
-        rv.setAdapter(adapter);
+        dbHelper = new DBHelper();
 
-        loadMessages();
+        // Listen for messages in real-time
+        /*dbHelper.listenForMessages(chatId, new DBHelper.OnMessagesReceived() {
+            @Override
+            public void onReceived(List<Message> messages) {
+                adapter.updateList(messages);
+                recyclerView.scrollToPosition(messages.size() - 1);
+            }
+        });*/
 
-        btnSend.setOnClickListener(v -> {
-            String text = etMessage.getText().toString().trim();
-            if (!text.isEmpty()) {
-                String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
+        TextView txtDoctorName = findViewById(R.id.txtDoctorName);
+        ImageView btnBack = findViewById(R.id.btnBack);
+        String doctorName = getIntent().getStringExtra("doctor_name");
+        String formattedName = "Dr. " + capitalizeWords(doctorName);
+        txtDoctorName.setText(formattedName);
 
-                Message msg = new Message(
-                        null, // Firestore will assign ID
-                        "patient",
-                        patientEmail,
-                        doctorName,
-                        text,
-                        timestamp,
-                        true
-                );
+        btnBack.setOnClickListener(v -> finish());
 
-                dbHelper.addMessage(msg,
-                        docRef -> {
-                            etMessage.setText("");  // clear input
-                            loadMessages();         // reload messages
-                        },
-                        e -> Log.e("ChatActivity", "Failed to send message", e)
-                );
+
+        // Send message
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = etMessage.getText().toString().trim();
+                if (!text.isEmpty()) {
+                    String timestamp = String.valueOf(System.currentTimeMillis());
+                    Message msg = new Message(patientId, doctorId, text, timestamp);
+                    dbHelper.sendMessage(chatId, msg);
+                    etMessage.setText("");
+                }
+            }
+        });
+
+        listenForMessages();
+    }
+    private void listenForMessages() {
+
+        DatabaseReference ref = FirebaseDatabase.getInstance(
+                        "https://healthcareapp-dad87-default-rtdb.asia-southeast1.firebasedatabase.app"
+                )
+                .getReference("chats")
+                .child(chatId)
+                .child("messages");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                List<Message> messages = new java.util.ArrayList<>();
+
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Message m = ds.getValue(Message.class);
+                    if (m != null) messages.add(m);
+                }
+
+                adapter.updateList(messages);
+                recyclerView.scrollToPosition(messages.size() - 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
-
-    private void loadMessages() {
-        dbHelper.getMessages(patientEmail, doctorName, messagesList -> {
-            adapter.updateList(messagesList);
-            rv.scrollToPosition(messagesList.size() - 1);
-        });
+    private String capitalizeWords(String name) {
+        if (name == null || name.isEmpty()) return "";
+        String[] parts = name.toLowerCase().split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) {
+            sb.append(Character.toUpperCase(p.charAt(0)))
+                    .append(p.substring(1))
+                    .append(" ");
+        }
+        return sb.toString().trim();
     }
+
+
+
 }

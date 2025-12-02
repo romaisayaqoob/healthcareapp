@@ -1,28 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="20dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:layout_marginTop="30dp">
 
-    <TextView
-        android:id="@+id/detail_name"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/detail_spec"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"/>
-
-    <Button
-        android:id="@+id/btn_confirm"
-        android:text="Confirm Appointment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</LinearLayout>
+        <!-- Doctor Image -->
+        <ImageView
+            android:id="@+id/image_doctor"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/doctor_placeholder"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_background"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Doctor Name -->
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dr. John Doe"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Specialization + Hospital -->
+        <TextView
+            android:id="@+id/detail_spec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cardiologist • City Hospital"
+            android:textSize="16sp"
+            android:textColor="#555"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Experience & Qualification -->
+        <TextView
+            android:id="@+id/detail_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 , MBBS, MCPS"
+            android:textSize="14sp"
+            android:textColor="#777"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Make Appointment Button -->
+        <Button
+            android:id="@+id/btn_make_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Make Appointment"
+            android:backgroundTint="#5B7FED"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

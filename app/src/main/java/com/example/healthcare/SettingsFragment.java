@@ -32,10 +32,10 @@ public class SettingsFragment extends Fragment {
 
         tvUserName = v.findViewById(R.id.tvUserName);
         tvUserEmail = v.findViewById(R.id.tvUserEmail);
-        btnChangePassword = v.findViewById(R.id.btnChangePassword);
+        /*btnChangePassword = v.findViewById(R.id.btnChangePassword);*/
         btnLogout = v.findViewById(R.id.btnLogout);
-        switchDarkMode = v.findViewById(R.id.switchDarkMode);
-        switchNotifications = v.findViewById(R.id.switchNotifications);
+        /*switchDarkMode = v.findViewById(R.id.switchDarkMode);
+        switchNotifications = v.findViewById(R.id.switchNotifications);*/
 
         // Load user info
         SharedPreferences sp = getContext().getSharedPreferences("user_session", Context.MODE_PRIVATE);
@@ -45,8 +45,8 @@ public class SettingsFragment extends Fragment {
         tvUserName.setText(name);
         tvUserEmail.setText(email);
 
-        btnChangePassword.setOnClickListener(view ->
-                Toast.makeText(getContext(), "Change Password clicked", Toast.LENGTH_SHORT).show());
+        /*btnChangePassword.setOnClickListener(view ->
+                Toast.makeText(getContext(), "Change Password clicked", Toast.LENGTH_SHORT).show());*/
 
         btnLogout.setOnClickListener(view -> {
             SharedPreferences.Editor editor = sp.edit();
@@ -56,11 +56,11 @@ public class SettingsFragment extends Fragment {
             getActivity().finish();
         });
 
-        switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) ->
+        /*switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) ->
                 Toast.makeText(getContext(), "Dark mode: " + isChecked, Toast.LENGTH_SHORT).show());
 
         switchNotifications.setOnCheckedChangeListener((buttonView, isChecked) ->
-                Toast.makeText(getContext(), "Notifications: " + isChecked, Toast.LENGTH_SHORT).show());
+                Toast.makeText(getContext(), "Notifications: " + isChecked, Toast.LENGTH_SHORT).show());*/
 
         return v;
     }

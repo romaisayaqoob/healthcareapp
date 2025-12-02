@@ -45,26 +45,19 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Doctor d = doctorList.get(position);
-        holder.name.setText(d.getName());
-        holder.specialty.setText(d.getSpecialization() + " • " + d.getHospital());
+        Doctor doctor = doctorList.get(position);
+        /*holder.name.setText(doctor.getName());*/
+        holder.name.setText("Dr. " + formatName(doctor.getName()));
 
-        holder.itemView.setOnClickListener(v -> listener.onDoctorClick(d));
+        holder.specialization.setText(doctor.getSpecialization());
+        holder.hospital.setText(doctor.getHospital());
+
+        holder.itemView.setOnClickListener(v -> listener.onDoctorClick(doctor));
     }
 
     @Override
     public int getItemCount() {
         return doctorList.size();
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, specialty;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.text_name);
-            specialty = itemView.findViewById(R.id.text_spec);
-        }
     }
 
     public void filter(String text) {
@@ -83,4 +76,31 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
         }
         notifyDataSetChanged();
     }
+
+    // Only **one** ViewHolder
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView name, specialization, hospital;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.text_name);
+            specialization = itemView.findViewById(R.id.text_specialization);
+            hospital = itemView.findViewById(R.id.text_hospital);
+        }
+    }
+    private String formatName(String name) {
+        if (name == null || name.isEmpty()) return "";
+
+        String[] words = name.toLowerCase().trim().split("\\s+");
+        StringBuilder sb = new StringBuilder();
+
+        for (String w : words) {
+            sb.append(Character.toUpperCase(w.charAt(0)))
+                    .append(w.substring(1))
+                    .append(" ");
+        }
+
+        return sb.toString().trim();
+    }
+
 }

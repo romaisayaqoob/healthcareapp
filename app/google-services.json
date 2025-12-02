@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "946760870316",
-    "project_id": "mediconnect-65400",
-    "storage_bucket": "mediconnect-65400.firebasestorage.app"
+    "project_number": "627413540736",
+    "project_id": "healthcareapp-dad87",
+    "storage_bucket": "healthcareapp-dad87.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:946760870316:android:2eea05c18a4872a8b5b209",
+        "mobilesdk_app_id": "1:627413540736:android:16bf772d796acdb87d6b65",
         "android_client_info": {
           "package_name": "com.example.healthcare"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA-Yn6BbzsBSm92DvpZJuVRu0mTUz2KHpg"
+          "current_key": "AIzaSyAN6uTzpQt7IfWrU5vEn-uRrMdNUS5x7nw"
         }
       ],
       "services": {

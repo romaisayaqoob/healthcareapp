@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F9FD"
+    android:fitsSystemWindows="true">
+
+    <!-- BLUE HEADER MATCHING HOME FRAGMENT -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#5B7FED"
+        android:paddingTop="40dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Schedule"
+                android:textColor="#B3C7FF"
+                android:textSize="14sp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/txtScheduleHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chats"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Messages List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5dp"/>
+
+    <!-- Message Input Area -->
+    <!-- <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+         <EditText
+             android:id="@+id/editMessage"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:hint="Type a message..."
+             android:padding="10dp"/>
+
+         <ImageButton
+             android:id="@+id/btnSend"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@android:drawable/ic_menu_send"
+             android:background="@android:color/transparent"/>
+     </LinearLayout>-->
+
+</LinearLayout>

@@ -5,8 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText android:id="@+id/edtName" android:hint="Name" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <EditText android:id="@+id/edtHospital" android:hint="Hospital" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <EditText android:id="@+id/edtSpecialization" android:hint="Specialization" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <Button android:id="@+id/btnSaveProfile" android:text="Save" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"/>
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:src="@drawable/person_svgrepo_com"
+        android:scaleType="centerCrop"
+        android:background="@drawable/round_image"
+        android:padding="4dp"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnUploadImage"
+        android:text="Upload Profile Picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/edtHospital"
+        android:hint="Hospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtSpecialization"
+        android:hint="Specialization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtExperience"
+        android:hint="Experience (years)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/edtQualification"
+        android:hint="Qualification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnSaveProfile"
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>
